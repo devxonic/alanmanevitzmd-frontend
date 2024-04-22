@@ -1,8 +1,8 @@
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-const Link = ({onPress, text}) => {
+const Link = ({onPress, text, ...props}) => {
   return (
-    <TouchableOpacity style={styles.link} onPress={onPress}>
+    <TouchableOpacity style={styles.link} onPress={onPress} {...props}>
       <Text style={styles.linkText}>{text}</Text>
     </TouchableOpacity>
   );
