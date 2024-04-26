@@ -1,12 +1,16 @@
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Link from '../components/common/Link';
 import Heading from '../components/common/Heading';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import {useNavigation} from '@react-navigation/native';
+import {login} from '../api/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignIn = () => {
+  const [formData, setFormData] = useState({email: '', password: ''});
+
   const navigation = useNavigation();
   const handleCreateAccountPress = () => {
     navigation.navigate('signup');
@@ -18,6 +22,23 @@ const SignIn = () => {
 
   const handleForgotPress = () => {
     navigation.navigate('recoveraccount');
+  };
+
+  const handleFormChange = (name, value) => {
+    setFormData(prev => ({...prev, [name]: value}));
+  };
+
+  const handleSubmit = () => {
+    login(formData)
+      .then(async res => {
+        const response = res.data.data;
+        const email = response.email;
+        const password = response.password;
+        await AsyncStorage.getItem('email', email);
+        await AsyncStorage.getItem('password', password);
+        navigation.navigate('dashboard');
+      })
+      .catch(error => console.log('ERROR', error));
   };
   return (
     <View style={styles.parent}>
@@ -37,11 +58,15 @@ const SignIn = () => {
             placeholder="Email"
             keyboardType="email-address"
             textContentType="emailAddress"
+            value={formData?.email}
+            onChangeText={value => handleFormChange('email', value)}
           />
           <Input
             placeholder="Password"
             secureTextEntry={true}
             textContentType="password"
+            value={formData?.password}
+            onChangeText={value => handleFormChange('password', value)}
           />
           <Link
             text="Forgot Password?"
@@ -50,7 +75,7 @@ const SignIn = () => {
           />
         </View>
         <View style={styles.bottomCon}>
-          <Button text="Sign In" />
+          <Button text="Sign In" onPress={handleSubmit} />
           <Text>Or Create With</Text>
           <TouchableOpacity>
             <Image source={require('../images/google.png')} />

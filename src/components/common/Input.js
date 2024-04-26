@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Controller} from 'react-hook-form';
 import {
   View,
   TextInput,
@@ -8,6 +9,7 @@ import {
 } from 'react-native';
 
 const Input = ({
+  props,
   placeholder,
   onChangeText,
   value,
@@ -22,6 +24,7 @@ const Input = ({
   return (
     <View style={styles.container}>
       <TextInput
+        {...props}
         style={styles.input}
         placeholder={placeholder}
         onChangeText={onChangeText}

@@ -2,23 +2,43 @@ import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import Link from '../components/common/Link';
 import Heading from '../components/common/Heading';
-import ButtonDisabled from '../components/common/ButtonDisabled';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 import {useNavigation} from '@react-navigation/native';
+import {signUp} from '../api/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({email: '', password: ''});
+
   const navigation = useNavigation();
+  const handleSubmit = () => {
+    signUp(formData)
+      .then(async res => {
+        const response = res.data.data;
+        const token = response.accessToken;
+        await AsyncStorage.setItem('accessToken', token);
+        await AsyncStorage.setItem('isAuth', JSON.stringify(true));
+        console.warn(token);
+        navigation.navigate('dashboard');
+      })
+      .catch(error => console.log('ERROR', error));
+  };
+
   const [selectedRole, setSelectedRole] = useState('patient');
   const handleRoleSelection = role => {
     setSelectedRole(role);
   };
-  const handlePress = () => {
-    navigation.navigate('signin');
+  const handlePress = data => {
+    console.log('Form data:', data);
   };
 
   const handleBackPress = () => {
     navigation.navigate('signin');
+  };
+
+  const handleFormChange = (name, value) => {
+    setFormData(prev => ({...prev, [name]: value}));
   };
 
   const renderRoleButton = (role, text) => (
@@ -66,11 +86,15 @@ const SignUp = () => {
                 placeholder="Email"
                 keyboardType="email-address"
                 textContentType="emailAddress"
+                value={formData?.email}
+                onChangeText={value => handleFormChange('email', value)}
               />
               <Input
                 placeholder="Password"
                 secureTextEntry={true}
                 textContentType="password"
+                value={formData?.password}
+                onChangeText={value => handleFormChange('password', value)}
               />
               <Input
                 placeholder="Confirm Password"
@@ -81,7 +105,7 @@ const SignUp = () => {
           )}
           {selectedRole === 'doctor' && (
             <>
-              <Input placeholder="Enter Doctor Name" />
+              <Input placeholder="Enter Doctor Name" error={errors.name} />
               <Input
                 placeholder="Email"
                 keyboardType="email-address"
@@ -101,7 +125,7 @@ const SignUp = () => {
           )}
           {selectedRole === 'nurse' && (
             <>
-              <Input placeholder="Enter Nurse Name " />
+              <Input placeholder="Enter Nurse Name" error={errors.name} />
               <Input
                 placeholder="Email"
                 keyboardType="email-address"
@@ -121,7 +145,7 @@ const SignUp = () => {
           )}
         </View>
         <View style={styles.bottomCon}>
-          <Button text="Create Account" />
+          <Button text="Create Account" onPress={handleSubmit} />
           <Text>Or Create With</Text>
           <TouchableOpacity>
             <Image source={require('../images/google.png')} />
