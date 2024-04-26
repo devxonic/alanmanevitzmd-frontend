@@ -8,3 +8,11 @@ export const login = body => {
 export const signUp = body => {
   return ApiHandler().post(endpoint.SIGNUP, body);
 };
+
+export const getCategories = body => {
+  return ApiHandler().get(endpoint.CATEGORIES, body);
+};
+
+export const getDoctors = body => {
+  return ApiHandler().get(endpoint.DOCTORS, body);
+};

@@ -1,16 +1,42 @@
-import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {CardData} from '../../../Data';
+import {useNavigation} from '@react-navigation/native';
+import {getCategories} from '../../api/auth';
 
 const Card = () => {
+  const navigation = useNavigation();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getCategories();
+        console.log(response.data.data);
+        setCategories(response.data.data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  const handleDoctorList = () => {
+    navigation.navigate('doctorslist');
+  };
   return (
     <>
       <View style={styles.main}>
-        {CardData.map((item, index) => (
-          <View style={styles.card} key={index}>
-            <Image source={item.image} style={styles.image} />
-            <Text style={styles.text}>{item.text}</Text>
-          </View>
+        {categories.map(category => (
+          <TouchableOpacity onPress={handleDoctorList}>
+            <View style={styles.card}>
+              <Image
+                source={require('../../images/eyeTwo.png')}
+                style={styles.image}
+              />
+              <Text style={styles.text}>{category.name}</Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </View>
     </>
@@ -22,7 +48,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    margin: 10,
   },
   card: {
     backgroundColor: 'white',
@@ -32,6 +58,8 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 5,
     padding: 10,
+    height: 100,
+    width: 100,
   },
 
   image: {
@@ -40,7 +68,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontSize: 16,
+    fontSize: 12,
   },
 });
 

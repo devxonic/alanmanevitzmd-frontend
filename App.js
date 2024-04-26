@@ -18,8 +18,11 @@ const App = () => {
   return (
     <GestureHandlerRootView>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
+        <Stack.Navigator
+          screenOptions={{
+            header: () => <Header />,
+          }}>
+          {/* <Stack.Screen
             name="onboard"
             component={Onboard}
             options={{headerShown: false}}
@@ -50,12 +53,12 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="dashboardcategory"
+            name="doctorscategory"
             component={DoctorsCategory}
             options={{headerShown: false}}
-          />
+          /> */}
           <Stack.Screen
-            name="doctorlist"
+            name="doctorslist"
             component={DoctorsList}
             options={{headerShown: false}}
           />

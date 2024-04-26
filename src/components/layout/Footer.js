@@ -1,99 +1,46 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
-import React, {useState} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-
-import Dashboard from '../../screens/Dashboard';
+import React from 'react';
+import {View, TouchableOpacity, Image, Text} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const Footer = () => {
-  const [selectedTab, setSelectedIndex] = useState(0);
+  const navigation = useNavigation();
+
+  const navigateToScreen = screenName => {
+    navigation.navigate(screenName);
+  };
+
   return (
-    <View style={styles.container}>
-      {selectedTab == 0 ? <Dashboard /> : 'page not found'}
-      <View style={styles.bottomView}>
-        <TouchableOpacity
-          style={styles.buttonTab}
-          onPress={() => {
-            setSelectedIndex(0);
-          }}>
-          <Image
-            source={require('../../images/home.png')}
-            style={styles.buttonTabIcon}
-          />
-        </TouchableOpacity>
-        {/* <TouchableOpacity
-          style={styles.buttonTab}
-          onPress={() => {
-            setSelectedIndex(1);
-          }}>
-          <Image
-            source={
-              selectedTab == 1
-                ? require('../../images/home.png')
-                : require('../../images/home.png')
-            }
-            style={styles.buttonTabIcon}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonTab}
-          onPress={() => {
-            setSelectedIndex(2);
-          }}>
-          <Image
-            source={
-              selectedTab == 2
-                ? require('../../images/home.png')
-                : require('../../images/home.png')
-            }
-            style={styles.buttonTabIcon}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonTab}
-          onPress={() => {
-            setSelectedIndex(3);
-          }}>
-          <Image
-            source={
-              selectedTab == 3
-                ? require('../../images/home.png')
-                : require('../../images/home.png')
-            }
-            style={styles.buttonTabIcon}
-          />
-        </TouchableOpacity> */}
-      </View>
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: 'lightgray',
+        height: 60,
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+      }}>
+      <TouchableOpacity
+        onPress={() => navigateToScreen('dashboard')}
+        style={{display: 'flex', alignItems: 'center'}}>
+        <Image source={require('../../images/home.png')} />
+        <Text style={{fontSize: 10}}>Home</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigateToScreen('doctorslist')}
+        style={{display: 'flex', alignItems: 'center'}}>
+        <Image source={require('../../images/doctorsThree.png')} />
+        <Text style={{fontSize: 10}}>Doctors</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigateToScreen('doctorscategory')}
+        style={{display: 'flex', alignItems: 'center'}}>
+        <Image source={require('../../images/history.png')} />
+        <Text style={{fontSize: 10}}>Category</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default Footer;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
-  bottomView: {
-    position: 'absolute',
-    bottom: 0,
-    height: 60,
-    width: '100%',
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-
-  buttonTab: {
-    width: '20%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  buttonTabIcon: {
-    width: 24,
-    height: 24,
-  },
-});

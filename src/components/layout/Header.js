@@ -1,8 +1,14 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import SearchBar from '../common/SearchBar';
+import Button from '../common/Button';
+import {useNavigation} from '@react-navigation/native';
 
 const Header = () => {
+  const navigation = useNavigation();
+  const handleLogout = () => {
+    navigation.navigate('onboard');
+  };
   return (
     <View style={styles.top}>
       <View style={styles.topOne}>
@@ -16,7 +22,9 @@ const Header = () => {
           </View>
         </View>
         <View>
-          <Image source={require('../../images/map.png')} />
+          <TouchableOpacity style={styles.button} onPress={handleLogout}>
+            <Text style={styles.buttonText}>Logout</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <SearchBar />
@@ -46,16 +54,29 @@ const styles = StyleSheet.create({
   },
 
   topOneOneText: {
-    fontSize: 10,
+    fontSize: 15,
     color: '#116754',
     fontWeight: '600',
     marginLeft: 4,
   },
 
   topOneOneHead: {
-    fontSize: 8,
+    fontSize: 12,
     color: 'black',
     marginLeft: 4,
+  },
+
+  button: {
+    backgroundColor: '#116754',
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: '500',
   },
 });
 

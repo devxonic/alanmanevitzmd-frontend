@@ -1,27 +1,53 @@
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import Header from '../components/layout/Header';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {DoctorDetails} from '../../Data';
+import Footer from '../components/layout/Footer';
+import {getDoctors} from '../api/auth';
 
 const DoctorsList = () => {
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getDoctors();
+        console.log(response.data.data);
+        setDoctors(response.data.data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
   return (
     <View style={styles.main}>
-      <Header />
+      <View>
+        <Header />
+      </View>
       <View>
         <ScrollView>
-          {DoctorDetails.map((item, index) => (
+          {doctors.map((item, index) => (
             <View style={styles.container} key={index}>
               <View style={styles.childOne}>
-                <Image source={item.image} />
+                {console.log(item.profileImage)}
+                <Image source={require('../images/doctorsFour.png')} />
               </View>
               <View style={styles.childTwo}>
                 <View style={styles.childTwoOne}>
-                  <Text style={styles.heading}>{item.doctorname}</Text>
+                  <Text style={styles.heading}>{item.name}</Text>
                   <Text style={styles.badge}>Online</Text>
                 </View>
                 <View style={styles.childTwoTwo}>
-                  <Text style={styles.light}>{item.degree}</Text>
+                  <Text style={styles.light}>{item.education}</Text>
                   <Text style={styles.light}>{item.experience}</Text>
                 </View>
                 <View style={styles.childThree}>
@@ -43,6 +69,7 @@ const DoctorsList = () => {
           ))}
         </ScrollView>
       </View>
+      <Footer />
     </View>
   );
 };
@@ -68,6 +95,7 @@ const styles = StyleSheet.create({
   main: {
     margin: 10,
     backgroundColor: '#E5EEEC',
+    height: '100%',
   },
   childOne: {
     width: '25%',

@@ -72,30 +72,35 @@ export const CardData = [
 
 export const DoctorDetails = [
   {
+    id: 1,
     doctorname: 'Doctor Name',
     degree: 'MD, MBBS, MDS',
     experience: '10+ Years Experience',
     image: require('./src/images/doctorsFour.png'),
   },
   {
+    id: 2,
     doctorname: 'Doctor Name',
     degree: 'MD, MBBS, MDS',
     experience: '10+ Years Experience',
     image: require('./src/images/doctorsFour.png'),
   },
   {
+    id: 3,
     doctorname: 'Doctor Name',
     degree: 'MD, MBBS, MDS',
     experience: '10+ Years Experience',
     image: require('./src/images/doctorsFour.png'),
   },
   {
+    id: 4,
     doctorname: 'Doctor Name',
     degree: 'MD, MBBS, MDS',
     experience: '10+ Years Experience',
     image: require('./src/images/doctorsFour.png'),
   },
   {
+    id: 5,
     doctorname: 'Doctor Name',
     degree: 'MD, MBBS, MDS',
     experience: '10+ Years Experience',

@@ -1,29 +1,36 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import SearchBar from '../components/common/SearchBar';
 import CarouselDashboard from '../components/common/CarouselDashboard';
 import Header from '../components/layout/Header';
+import {useNavigation} from '@react-navigation/native';
 import Footer from '../components/layout/Footer';
 
 const Dashboard = () => {
+  const navigation = useNavigation();
+  const handleDoctorCategory = () => {
+    navigation.navigate('doctorscategory');
+  };
+
   return (
     <View style={styles.main}>
       <Header />
       <View style={styles.carousel}>
         <CarouselDashboard />
       </View>
-      <View style={styles.thirdchild}>
-        <View style={styles.thirdchildOne}>
-          <Image source={require('../images/doctor.png')} />
-          <Text style={styles.heading}>Consult Doctors</Text>
-          <Text style={styles.text}>
-            Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
-          </Text>
+      <TouchableOpacity onPress={handleDoctorCategory}>
+        <View style={styles.thirdchild}>
+          <View style={styles.thirdchildOne}>
+            <Image source={require('../images/doctor.png')} />
+            <Text style={styles.heading}>Consult Doctors</Text>
+            <Text style={styles.text}>
+              Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
+            </Text>
+          </View>
+          <View>
+            <Image source={require('../images/doctors.png')} />
+          </View>
         </View>
-        <View>
-          <Image source={require('../images/doctors.png')} />
-        </View>
-      </View>
+      </TouchableOpacity>
       <View style={styles.fourthChild}>
         <View style={styles.fourthChildOne}>
           <View>
@@ -64,7 +71,7 @@ const Dashboard = () => {
           <Text style={styles.buttonText}>Upload Report</Text>
         </TouchableOpacity>
       </View>
-      {/* <Footer /> */}
+      <Footer />
     </View>
   );
 };
@@ -75,6 +82,7 @@ const styles = StyleSheet.create({
   },
   main: {
     backgroundColor: '#E7F0EE',
+    height: '100%',
   },
 
   top: {
