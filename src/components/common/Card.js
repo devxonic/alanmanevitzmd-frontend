@@ -12,7 +12,6 @@ const Card = () => {
     const fetchCategories = async () => {
       try {
         const response = await getCategories();
-        console.log(response.data.data);
         setCategories(response.data.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -27,8 +26,8 @@ const Card = () => {
   return (
     <>
       <View style={styles.main}>
-        {categories.map(category => (
-          <TouchableOpacity onPress={handleDoctorList}>
+        {categories.map((category, index) => (
+          <TouchableOpacity onPress={handleDoctorList} key={index}>
             <View style={styles.card}>
               <Image
                 source={require('../../images/eyeTwo.png')}

@@ -22,7 +22,7 @@ const App = () => {
           screenOptions={{
             header: () => <Header />,
           }}>
-          {/* <Stack.Screen
+          <Stack.Screen
             name="onboard"
             component={Onboard}
             options={{headerShown: false}}
@@ -56,7 +56,7 @@ const App = () => {
             name="doctorscategory"
             component={DoctorsCategory}
             options={{headerShown: false}}
-          /> */}
+          />
           <Stack.Screen
             name="doctorslist"
             component={DoctorsList}

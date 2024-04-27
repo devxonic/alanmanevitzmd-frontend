@@ -1,4 +1,11 @@
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
 import React, {useState} from 'react';
 import Link from '../components/common/Link';
 import Heading from '../components/common/Heading';
@@ -29,9 +36,7 @@ const SignUp = () => {
   const handleRoleSelection = role => {
     setSelectedRole(role);
   };
-  const handlePress = data => {
-    console.log('Form data:', data);
-  };
+  const handlePress = data => {};
 
   const handleBackPress = () => {
     navigation.navigate('signin');
@@ -61,98 +66,100 @@ const SignUp = () => {
     </TouchableOpacity>
   );
   return (
-    <View style={styles.parent}>
-      <View style={styles.firstChild}>
-        <TouchableOpacity onPress={handleBackPress}>
-          <Image source={require('../images/back.png')} />
-        </TouchableOpacity>
-        <Link text="Sign In" onPress={handlePress} />
-      </View>
-      <View style={styles.secondChild}>
-        <Heading text="Create Your" />
-        <Heading text="Account" />
-      </View>
-      <View>
-        <View style={styles.buttonCon}>
-          {renderRoleButton('patient', 'Patient')}
-          {renderRoleButton('doctor', 'Doctor')}
-          {renderRoleButton('nurse', 'Nurse')}
+    <SafeAreaView>
+      <View style={styles.parent}>
+        <View style={styles.firstChild}>
+          <TouchableOpacity onPress={handleBackPress}>
+            <Image source={require('../images/back.png')} />
+          </TouchableOpacity>
+          <Link text="Sign In" onPress={handlePress} />
+        </View>
+        <View style={styles.secondChild}>
+          <Heading text="Create Your" />
+          <Heading text="Account" />
         </View>
         <View>
-          {selectedRole === 'patient' && (
-            <>
-              <Input placeholder="Enter Patient Name" />
-              <Input
-                placeholder="Email"
-                keyboardType="email-address"
-                textContentType="emailAddress"
-                value={formData?.email}
-                onChangeText={value => handleFormChange('email', value)}
-              />
-              <Input
-                placeholder="Password"
-                secureTextEntry={true}
-                textContentType="password"
-                value={formData?.password}
-                onChangeText={value => handleFormChange('password', value)}
-              />
-              <Input
-                placeholder="Confirm Password"
-                secureTextEntry={true}
-                textContentType="password"
-              />
-            </>
-          )}
-          {selectedRole === 'doctor' && (
-            <>
-              <Input placeholder="Enter Doctor Name" error={errors.name} />
-              <Input
-                placeholder="Email"
-                keyboardType="email-address"
-                textContentType="emailAddress"
-              />
-              <Input
-                placeholder="Password"
-                secureTextEntry={true}
-                textContentType="password"
-              />
-              <Input
-                placeholder="Confirm Password"
-                secureTextEntry={true}
-                textContentType="password"
-              />
-            </>
-          )}
-          {selectedRole === 'nurse' && (
-            <>
-              <Input placeholder="Enter Nurse Name" error={errors.name} />
-              <Input
-                placeholder="Email"
-                keyboardType="email-address"
-                textContentType="emailAddress"
-              />
-              <Input
-                placeholder="Password"
-                secureTextEntry={true}
-                textContentType="password"
-              />
-              <Input
-                placeholder="Confirm Password"
-                secureTextEntry={true}
-                textContentType="password"
-              />
-            </>
-          )}
-        </View>
-        <View style={styles.bottomCon}>
-          <Button text="Create Account" onPress={handleSubmit} />
-          <Text>Or Create With</Text>
-          <TouchableOpacity>
-            <Image source={require('../images/google.png')} />
-          </TouchableOpacity>
+          <View style={styles.buttonCon}>
+            {renderRoleButton('patient', 'Patient')}
+            {renderRoleButton('doctor', 'Doctor')}
+            {renderRoleButton('nurse', 'Nurse')}
+          </View>
+          <View>
+            {selectedRole === 'patient' && (
+              <>
+                <Input placeholder="Enter Patient Name" />
+                <Input
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  textContentType="emailAddress"
+                  value={formData?.email}
+                  onChangeText={value => handleFormChange('email', value)}
+                />
+                <Input
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  textContentType="password"
+                  value={formData?.password}
+                  onChangeText={value => handleFormChange('password', value)}
+                />
+                <Input
+                  placeholder="Confirm Password"
+                  secureTextEntry={true}
+                  textContentType="password"
+                />
+              </>
+            )}
+            {selectedRole === 'doctor' && (
+              <>
+                <Input placeholder="Enter Doctor Name" />
+                <Input
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  textContentType="emailAddress"
+                />
+                <Input
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  textContentType="password"
+                />
+                <Input
+                  placeholder="Confirm Password"
+                  secureTextEntry={true}
+                  textContentType="password"
+                />
+              </>
+            )}
+            {selectedRole === 'nurse' && (
+              <>
+                <Input placeholder="Enter Nurse Name" />
+                <Input
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  textContentType="emailAddress"
+                />
+                <Input
+                  placeholder="Password"
+                  secureTextEntry={true}
+                  textContentType="password"
+                />
+                <Input
+                  placeholder="Confirm Password"
+                  secureTextEntry={true}
+                  textContentType="password"
+                />
+              </>
+            )}
+          </View>
+          <View style={styles.bottomCon}>
+            <Button text="Create Account" onPress={handleSubmit} />
+            <Text>Or Create With</Text>
+            <TouchableOpacity>
+              <Image source={require('../images/google.png')} />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -178,7 +185,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 15,
     fontWeight: '600',
-    color: 'silver',
+    color: 'grey',
   },
   buttonCon: {
     display: 'flex',

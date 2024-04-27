@@ -1,4 +1,12 @@
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Alert,
+  SafeAreaView,
+} from 'react-native';
 import React, {useState} from 'react';
 import Link from '../components/common/Link';
 import Heading from '../components/common/Heading';
@@ -10,6 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({email: '', password: ''});
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation();
   const handleCreateAccountPress = () => {
@@ -29,6 +38,7 @@ const SignIn = () => {
   };
 
   const handleSubmit = () => {
+    setIsLoading(true);
     login(formData)
       .then(async res => {
         const response = res.data.data;
@@ -36,53 +46,61 @@ const SignIn = () => {
         const password = response.password;
         await AsyncStorage.getItem('email', email);
         await AsyncStorage.getItem('password', password);
+        setIsLoading(false);
         navigation.navigate('dashboard');
       })
-      .catch(error => console.log('ERROR', error));
+      .catch(error => Alert.alert('One or more details is incorrect'));
   };
   return (
-    <View style={styles.parent}>
-      <View style={styles.firstChild}>
-        <TouchableOpacity onPress={handleBackPress}>
-          <Image source={require('../images/back.png')} />
-        </TouchableOpacity>
-        <Link text="Create Account" onPress={handleCreateAccountPress} />
-      </View>
-      <View style={styles.secondChild}>
-        <Heading text="Sign In To Your" />
-        <Heading text="Account" />
-      </View>
-      <View>
-        <View>
-          <Input
-            placeholder="Email"
-            keyboardType="email-address"
-            textContentType="emailAddress"
-            value={formData?.email}
-            onChangeText={value => handleFormChange('email', value)}
-          />
-          <Input
-            placeholder="Password"
-            secureTextEntry={true}
-            textContentType="password"
-            value={formData?.password}
-            onChangeText={value => handleFormChange('password', value)}
-          />
-          <Link
-            text="Forgot Password?"
-            style={styles.link}
-            onPress={handleForgotPress}
-          />
-        </View>
-        <View style={styles.bottomCon}>
-          <Button text="Sign In" onPress={handleSubmit} />
-          <Text>Or Create With</Text>
-          <TouchableOpacity>
-            <Image source={require('../images/google.png')} />
+    <SafeAreaView>
+      <View style={styles.parent}>
+        <View style={styles.firstChild}>
+          <TouchableOpacity onPress={handleBackPress}>
+            <Image source={require('../images/back.png')} />
           </TouchableOpacity>
+          <Link text="Create Account" onPress={handleCreateAccountPress} />
+        </View>
+        <View style={styles.secondChild}>
+          <Heading text="Sign In To Your" />
+          <Heading text="Account" />
+        </View>
+        <View>
+          <View>
+            <Input
+              style={styles.input}
+              placeholder="Email"
+              keyboardType="email-address"
+              textContentType="emailAddress"
+              value={formData?.email}
+              onChangeText={value => handleFormChange('email', value)}
+            />
+            <Input
+              placeholder="Password"
+              secureTextEntry={true}
+              textContentType="password"
+              value={formData?.password}
+              onChangeText={value => handleFormChange('password', value)}
+            />
+            <Link
+              text="Forgot Password?"
+              style={styles.link}
+              onPress={handleForgotPress}
+            />
+          </View>
+          <View style={styles.bottomCon}>
+            <Button
+              text="Sign In"
+              onPress={handleSubmit}
+              disabled={isLoading}
+            />
+            <Text>Or Create With</Text>
+            <TouchableOpacity>
+              <Image source={require('../images/google.png')} />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

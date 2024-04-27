@@ -1,8 +1,13 @@
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import React from 'react';
 import Carousel from '../components/common/Carousel';
-import ButtonDisabled from '../components/common/ButtonDisabled';
-import Button from '../components/common/Button';
 import {useNavigation} from '@react-navigation/native';
 
 const Onboard = () => {
@@ -11,25 +16,29 @@ const Onboard = () => {
     navigation.navigate('signin');
   };
   return (
-    <View style={styles.mainCon}>
-      <View style={styles.childOne}>
-        <Image source={require('../images/logo.png')} />
+    <SafeAreaView>
+      <View style={styles.mainCon}>
+        <View style={styles.childOne}>
+          <Image source={require('../images/logo.png')} />
+        </View>
+        <View style={styles.childTwo}>
+          <Carousel />
+        </View>
+        <View style={styles.childThree}>
+          <TouchableOpacity style={styles.buttonOne}>
+            <Text style={styles.buttonOneText}>Sign In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonTwo}
+            onPress={handleStartSubmit}>
+            <Text style={styles.buttonTwoText}>Get Started</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.lastChild}>
+          <Text>Health Comes First, Join In!</Text>
+        </View>
       </View>
-      <View style={styles.childTwo}>
-        <Carousel />
-      </View>
-      <View style={styles.childThree}>
-        <TouchableOpacity style={styles.buttonOne}>
-          <Text style={styles.buttonOneText}>Sign In</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonTwo} onPress={handleStartSubmit}>
-          <Text style={styles.buttonTwoText}>Get Started</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.lastChild}>
-        <Text>Health Comes First, Join In!</Text>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

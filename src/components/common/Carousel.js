@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     textAlign: 'center',
+    color: 'grey',
   },
   pagination: {
     position: 'absolute',

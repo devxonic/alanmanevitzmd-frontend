@@ -27,6 +27,7 @@ const Input = ({
         {...props}
         style={styles.input}
         placeholder={placeholder}
+        placeholderTextColor="gray"
         onChangeText={onChangeText}
         value={value}
         secureTextEntry={!showPassword && secureTextEntry}
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     fontSize: 15,
+    color: 'black',
   },
   toggleButton: {
     position: 'absolute',

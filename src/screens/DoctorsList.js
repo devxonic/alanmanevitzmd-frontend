@@ -5,6 +5,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../components/layout/Header';
@@ -19,7 +20,6 @@ const DoctorsList = () => {
     const fetchCategories = async () => {
       try {
         const response = await getDoctors();
-        console.log(response.data.data);
         setDoctors(response.data.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -29,48 +29,49 @@ const DoctorsList = () => {
   }, []);
 
   return (
-    <View style={styles.main}>
-      <View>
-        <Header />
-      </View>
-      <View>
-        <ScrollView>
-          {doctors.map((item, index) => (
-            <View style={styles.container} key={index}>
-              <View style={styles.childOne}>
-                {console.log(item.profileImage)}
-                <Image source={require('../images/doctorsFour.png')} />
+    <SafeAreaView>
+      <View style={styles.main}>
+        <View>
+          <Header />
+        </View>
+        <View>
+          <ScrollView style={styles.scroll}>
+            {doctors.map((item, index) => (
+              <View style={styles.container} key={index}>
+                <View style={styles.childOne}>
+                  <Image source={require('../images/doctorsFour.png')} />
+                </View>
+                <View style={styles.childTwo}>
+                  <View style={styles.childTwoOne}>
+                    <Text style={styles.heading}>{item.name}</Text>
+                    <Text style={styles.badge}>Online</Text>
+                  </View>
+                  <View style={styles.childTwoTwo}>
+                    <Text style={styles.light}>{item.education}</Text>
+                    <Text style={styles.light}>{item.experience}</Text>
+                  </View>
+                  <View style={styles.childThree}>
+                    <TouchableOpacity style={styles.childThreeThree}>
+                      <Image source={require('../images/homeOne.png')} />
+                      <Text style={styles.childThreeThreeText}>
+                        Book Appointment
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.childThreeThree}>
+                      <Image source={require('../images/homeOne.png')} />
+                      <Text style={styles.childThreeThreeText}>
+                        Consult Online
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               </View>
-              <View style={styles.childTwo}>
-                <View style={styles.childTwoOne}>
-                  <Text style={styles.heading}>{item.name}</Text>
-                  <Text style={styles.badge}>Online</Text>
-                </View>
-                <View style={styles.childTwoTwo}>
-                  <Text style={styles.light}>{item.education}</Text>
-                  <Text style={styles.light}>{item.experience}</Text>
-                </View>
-                <View style={styles.childThree}>
-                  <TouchableOpacity style={styles.childThreeThree}>
-                    <Image source={require('../images/homeOne.png')} />
-                    <Text style={styles.childThreeThreeText}>
-                      Book Appointment
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.childThreeThree}>
-                    <Image source={require('../images/homeOne.png')} />
-                    <Text style={styles.childThreeThreeText}>
-                      Consult Online
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View>
-          ))}
-        </ScrollView>
+            ))}
+          </ScrollView>
+        </View>
+        <Footer />
       </View>
-      <Footer />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -78,10 +79,14 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: 'white',
     padding: 5,
     margin: 5,
     borderRadius: 5,
+  },
+  scroll: {
+    height: 575,
   },
   text: {
     fontSize: 18,
@@ -93,7 +98,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   main: {
-    margin: 10,
     backgroundColor: '#E5EEEC',
     height: '100%',
   },

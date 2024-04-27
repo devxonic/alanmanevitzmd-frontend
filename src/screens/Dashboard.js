@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import CarouselDashboard from '../components/common/CarouselDashboard';
 import Header from '../components/layout/Header';
 import {useNavigation} from '@react-navigation/native';
@@ -12,67 +19,69 @@ const Dashboard = () => {
   };
 
   return (
-    <View style={styles.main}>
-      <Header />
-      <View style={styles.carousel}>
-        <CarouselDashboard />
-      </View>
-      <TouchableOpacity onPress={handleDoctorCategory}>
-        <View style={styles.thirdchild}>
-          <View style={styles.thirdchildOne}>
-            <Image source={require('../images/doctor.png')} />
-            <Text style={styles.heading}>Consult Doctors</Text>
-            <Text style={styles.text}>
-              Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
-            </Text>
+    <SafeAreaView>
+      <View style={styles.main}>
+        <Header />
+        <View style={styles.carousel}>
+          <CarouselDashboard />
+        </View>
+        <TouchableOpacity onPress={handleDoctorCategory}>
+          <View style={styles.thirdchild}>
+            <View style={styles.thirdchildOne}>
+              <Image source={require('../images/doctor.png')} />
+              <Text style={styles.heading}>Consult Doctors</Text>
+              <Text style={styles.text}>
+                Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
+              </Text>
+            </View>
+            <View>
+              <Image source={require('../images/doctors.png')} />
+            </View>
           </View>
-          <View>
-            <Image source={require('../images/doctors.png')} />
+        </TouchableOpacity>
+        <View style={styles.fourthChild}>
+          <View style={styles.fourthChildOne}>
+            <View>
+              <Text style={styles.heading}>Diagnostics</Text>
+              <Text style={styles.text}>
+                Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
+              </Text>
+            </View>
+            <View style={styles.fourthChildOneTwo}>
+              <Image source={require('../images/testube.png')} />
+              <Image source={require('../images/hand.png')} />
+            </View>
+          </View>
+          <View style={styles.fourthChildTwo}>
+            <View>
+              <Text style={styles.headingRight}>Hire Nurses</Text>
+              <Text style={styles.textRight}>
+                Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
+              </Text>
+            </View>
+            <View style={styles.fourthChildOneTwo}>
+              <Image source={require('../images/doctorsTwo.png')} />
+              <Image source={require('../images/symbol.png')} />
+            </View>
           </View>
         </View>
-      </TouchableOpacity>
-      <View style={styles.fourthChild}>
-        <View style={styles.fourthChildOne}>
+        <View style={styles.fifthChild}>
+          <View>
+            <Image source={require('../images/report.png')} />
+          </View>
           <View>
             <Text style={styles.heading}>Diagnostics</Text>
             <Text style={styles.text}>
               Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
             </Text>
           </View>
-          <View style={styles.fourthChildOneTwo}>
-            <Image source={require('../images/testube.png')} />
-            <Image source={require('../images/hand.png')} />
-          </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Upload Report</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.fourthChildTwo}>
-          <View>
-            <Text style={styles.headingRight}>Hire Nurses</Text>
-            <Text style={styles.textRight}>
-              Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
-            </Text>
-          </View>
-          <View style={styles.fourthChildOneTwo}>
-            <Image source={require('../images/doctorsTwo.png')} />
-            <Image source={require('../images/symbol.png')} />
-          </View>
-        </View>
+        <Footer />
       </View>
-      <View style={styles.fifthChild}>
-        <View>
-          <Image source={require('../images/report.png')} />
-        </View>
-        <View>
-          <Text style={styles.heading}>Diagnostics</Text>
-          <Text style={styles.text}>
-            Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
-          </Text>
-        </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Upload Report</Text>
-        </TouchableOpacity>
-      </View>
-      <Footer />
-    </View>
+    </SafeAreaView>
   );
 };
 

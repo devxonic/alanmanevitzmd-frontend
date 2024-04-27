@@ -8,7 +8,6 @@ const UploadImage = () => {
       const doc = await DocumentPicker.pick({
         type: [DocumentPicker.types.pdf],
       });
-      console.log(doc);
     } catch (err) {
       if (DocumentPicker.isCancel(err)) {
         console.log('User cancel the upload', err);

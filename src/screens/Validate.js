@@ -1,4 +1,11 @@
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Heading from '../components/common/Heading';
 import Input from '../components/common/Input';
@@ -15,10 +22,7 @@ const Validate = () => {
   } = useForm();
 
   const navigation = useNavigation();
-  const handleFormSubmit = () => {
-    // navigation.navigate('');
-    console.log('Submitted');
-  };
+  const handleFormSubmit = () => {};
 
   const handleBackPress = () => {
     navigation.navigate('recoveraccount');
@@ -45,32 +49,34 @@ const Validate = () => {
   }, [seconds, isTimerRunning]);
 
   return (
-    <View style={styles.parent}>
-      <View style={styles.firstChild}>
-        <TouchableOpacity onPress={handleBackPress}>
-          <Image source={require('../images/back.png')} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.secondChild}>
-        <Heading text="Let Us" />
-        <Heading text="Validate" />
-      </View>
-      <View>
+    <SafeAreaView>
+      <View style={styles.parent}>
+        <View style={styles.firstChild}>
+          <TouchableOpacity onPress={handleBackPress}>
+            <Image source={require('../images/back.png')} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.secondChild}>
+          <Heading text="Let Us" />
+          <Heading text="Validate" />
+        </View>
         <View>
-          <Input placeholder="Enter Recovery Email" keyboardType="numeric" />
-        </View>
-        <Text style={{textAlign: 'right'}}>
-          {seconds > 0 ? `${seconds} sec` : 'Resend Code'}
-        </Text>
-        <View style={styles.bottomCon}>
-          <Button
-            text={isTimerRunning ? 'Validate' : 'Resend Code'}
-            onPress={isTimerRunning ? handleFormSubmit : onTimerComplete}
-            disabled={isTimerRunning}
-          />
+          <View>
+            <Input placeholder="Enter Recovery Email" keyboardType="numeric" />
+          </View>
+          <Text style={{textAlign: 'right'}}>
+            {seconds > 0 ? `${seconds} sec` : 'Resend Code'}
+          </Text>
+          <View style={styles.bottomCon}>
+            <Button
+              text={isTimerRunning ? 'Validate' : 'Resend Code'}
+              onPress={isTimerRunning ? handleFormSubmit : onTimerComplete}
+              disabled={isTimerRunning}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

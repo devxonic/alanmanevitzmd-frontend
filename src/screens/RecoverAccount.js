@@ -1,4 +1,11 @@
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
 import React from 'react';
 import Link from '../components/common/Link';
 import Heading from '../components/common/Heading';
@@ -17,29 +24,31 @@ const RecoverAccount = () => {
   };
 
   return (
-    <View style={styles.parent}>
-      <View style={styles.firstChild}>
-        <TouchableOpacity onPress={handleBackPress}>
-          <Image source={require('../images/back.png')} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.secondChild}>
-        <Heading text="Recover Your" />
-        <Heading text="Account" />
-      </View>
-      <View>
+    <SafeAreaView>
+      <View style={styles.parent}>
+        <View style={styles.firstChild}>
+          <TouchableOpacity onPress={handleBackPress}>
+            <Image source={require('../images/back.png')} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.secondChild}>
+          <Heading text="Recover Your" />
+          <Heading text="Account" />
+        </View>
         <View>
-          <Input
-            placeholder="Enter Recovery Email"
-            keyboardType="email-address"
-            textContentType="emailAddress"
-          />
-        </View>
-        <View style={styles.bottomCon}>
-          <Button text="Send Code" onPress={handleSubmit} />
+          <View>
+            <Input
+              placeholder="Enter Recovery Email"
+              keyboardType="email-address"
+              textContentType="emailAddress"
+            />
+          </View>
+          <View style={styles.bottomCon}>
+            <Button text="Send Code" onPress={handleSubmit} />
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
