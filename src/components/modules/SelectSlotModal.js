@@ -11,6 +11,7 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from '../layout/Header';
 import Button from '../common/Button';
+import {useNavigation} from '@react-navigation/native';
 
 const CustomButton = ({title, date, onPress, isSelected}) => {
   return (
@@ -57,6 +58,10 @@ const SelectSlotModal = () => {
     setModalVisible(true);
   };
 
+  const navigation = useNavigation();
+  const navigateBooking = () => {
+    navigation.navigate('booking');
+  };
   return (
     <View style={styles.mainContainer}>
       <View>
@@ -136,7 +141,7 @@ const SelectSlotModal = () => {
         />
       </View>
       <View>
-        <Button text="Next" />
+        <Button text="Next" onPress={navigateBooking} />
       </View>
     </View>
   );

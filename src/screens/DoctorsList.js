@@ -37,9 +37,6 @@ const DoctorsList = () => {
     <SafeAreaView>
       <View style={styles.main}>
         <View>
-          <Header />
-        </View>
-        <View>
           <ScrollView style={styles.scroll}>
             {doctors.map((item, index) => (
               <TouchableOpacity onPress={navigateToSlot} key={index}>
