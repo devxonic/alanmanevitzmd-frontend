@@ -12,6 +12,8 @@ import DoctorsCategory from './src/screens/DoctorCategory.js';
 import DoctorsList from './src/screens/DoctorsList.js';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Footer from './src/components/layout/Footer.js';
+import SelectSlotModal from './src/components/modules/SelectSlotModal.js';
+import ConfirmBooking from './src/components/modules/ConfirmBooking.js';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -60,6 +62,16 @@ const App = () => {
           <Stack.Screen
             name="doctorslist"
             component={DoctorsList}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="selectslot"
+            component={SelectSlotModal}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="booking"
+            component={ConfirmBooking}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
