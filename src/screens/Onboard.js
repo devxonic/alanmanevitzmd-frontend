@@ -25,9 +25,6 @@ const Onboard = () => {
           <Carousel />
         </View>
         <View style={styles.childThree}>
-          <TouchableOpacity style={styles.buttonOne}>
-            <Text style={styles.buttonOneText}>Sign In</Text>
-          </TouchableOpacity>
           <TouchableOpacity
             style={styles.buttonTwo}
             onPress={handleStartSubmit}>
@@ -83,7 +80,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 5,
     alignItems: 'center',
-    width: '45%',
+    width: '90%',
   },
   buttonTwoText: {
     color: 'white',
