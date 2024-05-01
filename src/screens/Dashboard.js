@@ -21,9 +21,9 @@ const Dashboard = () => {
   return (
     <SafeAreaView>
       <View style={styles.main}>
-        <View style={styles.carousel}>
-          <CarouselDashboard />
-        </View>
+        {/* <View style={styles.carousel}> */}
+        <CarouselDashboard />
+        {/* </View> */}
         <TouchableOpacity onPress={handleDoctorCategory}>
           <View style={styles.thirdchild}>
             <View style={styles.thirdchildOne}>
@@ -86,7 +86,7 @@ const Dashboard = () => {
 
 const styles = StyleSheet.create({
   carousel: {
-    height: 100,
+    // height: 140,
   },
   main: {
     backgroundColor: '#E7F0EE',

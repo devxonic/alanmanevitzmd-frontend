@@ -34,8 +34,8 @@ const Footer = () => {
         onPress={() => navigateToScreen('doctorslist')}
         style={{display: 'flex', alignItems: 'center'}}>
         <Image
-          source={require('../../images/doctorsThree.png')}
-          style={{tintColor: 'black'}}
+          source={require('../../images/stethoscope.png')}
+          style={{tintColor: 'black', height: 20, width: 20}}
         />
         <Text style={{fontSize: 10, color: 'black'}}>Doctors</Text>
       </TouchableOpacity>
@@ -43,8 +43,8 @@ const Footer = () => {
         onPress={() => navigateToScreen('doctorscategory')}
         style={{display: 'flex', alignItems: 'center'}}>
         <Image
-          source={require('../../images/history.png')}
-          style={{tintColor: 'black'}}
+          source={require('../../images/notes.png')}
+          style={{tintColor: 'black', height: 20, width: 20}}
         />
         <Text style={{fontSize: 10, color: 'black'}}>Category</Text>
       </TouchableOpacity>

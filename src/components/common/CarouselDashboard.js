@@ -30,13 +30,16 @@ const CarouselDashboard = () => {
 const styles = StyleSheet.create({
   slide: {
     margin: 10,
-    padding: 10,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 30,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     borderRadius: 5,
+    height: 300,
   },
   leftchild: {
     width: '80%',
@@ -50,13 +53,14 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   heading: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#160846',
   },
   text: {
-    fontSize: 7,
+    fontSize: 10,
     color: 'grey',
+    lineHeight: 3,
   },
 });
 
