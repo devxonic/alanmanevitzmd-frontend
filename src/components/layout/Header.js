@@ -13,12 +13,12 @@ const Header = () => {
     <View style={styles.top}>
       <View style={styles.topOne}>
         <View style={styles.topOneOne}>
-          <View>
-            <Image source={require('../../images/map.png')} />
-          </View>
-          <View>
-            <Text style={styles.topOneOneHead}>Current Location</Text>
-            <Text style={styles.topOneOneText}>Pakistan</Text>
+          <View style={styles.logoBox}>
+            <Image
+              source={require('../../images/logo.png')}
+              style={styles.logo}
+              resizeMode="contain"
+            />
           </View>
         </View>
         <View>
@@ -33,6 +33,16 @@ const Header = () => {
 };
 
 const styles = StyleSheet.create({
+  logoBox: {
+    // borderWidth: 1,
+    // borderColor: 'red',
+    width: 120,
+  },
+  logo: {
+    width: undefined,
+    height: undefined,
+    aspectRatio: 2,
+  },
   top: {
     display: 'flex',
     flexDirection: 'column',
