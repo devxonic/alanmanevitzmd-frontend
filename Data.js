@@ -107,3 +107,112 @@ export const DoctorDetails = [
     image: require('./src/images/doctorsFour.png'),
   },
 ];
+
+export const LabDetails = [
+  {
+    id: 1,
+    name: 'Lab Name',
+    test: 'All Tests',
+    time: '10AM - 10PM',
+    image: require('./src/images/lab.png'),
+    location: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City',
+  },
+  {
+    id: 2,
+    name: 'Lab Name',
+    test: 'All Tests',
+    time: '10AM - 10PM',
+    image: require('./src/images/lab.png'),
+    location: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City',
+  },
+  {
+    id: 3,
+    name: 'Lab Name',
+    test: 'All Tests',
+    time: '10AM - 10PM',
+    image: require('./src/images/lab.png'),
+    location: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City',
+  },
+  {
+    id: 4,
+    name: 'Lab Name',
+    test: 'All Tests',
+    time: '10AM - 10PM',
+    image: require('./src/images/lab.png'),
+    location: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City',
+  },
+  {
+    id: 5,
+    name: 'Lab Name',
+    test: 'All Tests',
+    time: '10AM - 10PM',
+    image: require('./src/images/lab.png'),
+    location: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City',
+  },
+];
+
+export const NotificationDetails = [
+  {
+    id: 1,
+    heading: 'Notification #1',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, Dolor Sit Road, Amet City.',
+    image: require('./src/images/lab.png'),
+  },
+  {
+    id: 2,
+    heading: 'Notification #2',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, Dolor Sit Road, Amet City.',
+    image: require('./src/images/lab.png'),
+  },
+  {
+    id: 3,
+    heading: 'Notification #3',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, Dolor Sit Road, Amet City.',
+    image: require('./src/images/lab.png'),
+  },
+  {
+    id: 4,
+    heading: 'Notification #4',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, Dolor Sit Road, Amet City.',
+    image: require('./src/images/lab.png'),
+  },
+  {
+    id: 5,
+    heading: 'Notification #5',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, Dolor Sit Road, Amet City.',
+    image: require('./src/images/lab.png'),
+  },
+];
+
+export const BlogDetails = [
+  {
+    id: 1,
+    heading: 'Article Headline',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, ',
+    image: require('./src/images/lab.png'),
+  },
+  {
+    id: 2,
+    heading: 'Article Headline',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, ',
+    image: require('./src/images/lab.png'),
+  },
+  {
+    id: 3,
+    heading: 'Article Headline',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, ',
+    image: require('./src/images/lab.png'),
+  },
+  {
+    id: 4,
+    heading: 'Article Headline',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, ',
+    image: require('./src/images/lab.png'),
+  },
+  {
+    id: 5,
+    heading: 'Article Headline',
+    text: 'Lorem Ipsum Hospital, Dolor Sit Road, Amet City. Lorem Ipsum   Hospital, ',
+    image: require('./src/images/lab.png'),
+  },
+];
