@@ -18,7 +18,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({email: '', password: ''});
-  const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation();
   const handleCreateAccountPress = () => {
@@ -38,7 +37,6 @@ const SignIn = () => {
   };
 
   const handleSubmit = () => {
-    setIsLoading(true);
     login(formData)
       .then(async res => {
         const response = res.data.data;
@@ -46,7 +44,6 @@ const SignIn = () => {
         const password = response.password;
         await AsyncStorage.getItem('email', email);
         await AsyncStorage.getItem('password', password);
-        setIsLoading(false);
         navigation.navigate('dashboard');
       })
       .catch(error => Alert.alert('One or more details is incorrect'));
@@ -88,11 +85,7 @@ const SignIn = () => {
             />
           </View>
           <View style={styles.bottomCon}>
-            <Button
-              text="Sign In"
-              onPress={handleSubmit}
-              disabled={isLoading}
-            />
+            <Button text="Sign In" onPress={handleSubmit} />
             <Text>Or Create With</Text>
             <TouchableOpacity>
               <Image source={require('../images/google.png')} />

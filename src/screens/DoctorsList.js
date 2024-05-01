@@ -12,9 +12,14 @@ import Header from '../components/layout/Header';
 import {DoctorDetails} from '../../Data';
 import Footer from '../components/layout/Footer';
 import {getDoctors} from '../api/auth';
+import {useNavigation} from '@react-navigation/native';
 
 const DoctorsList = () => {
   const [doctors, setDoctors] = useState([]);
+  const navigation = useNavigation();
+  const navigateToSlot = () => {
+    navigation.navigate('selectslot');
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -32,40 +37,39 @@ const DoctorsList = () => {
     <SafeAreaView>
       <View style={styles.main}>
         <View>
-          <Header />
-        </View>
-        <View>
           <ScrollView style={styles.scroll}>
             {doctors.map((item, index) => (
-              <View style={styles.container} key={index}>
-                <View style={styles.childOne}>
-                  <Image source={require('../images/doctorsFour.png')} />
+              <TouchableOpacity onPress={navigateToSlot} key={index}>
+                <View style={styles.container}>
+                  <View style={styles.childOne}>
+                    <Image source={require('../images/doctorsFour.png')} />
+                  </View>
+                  <View style={styles.childTwo}>
+                    <View style={styles.childTwoOne}>
+                      <Text style={styles.heading}>{item.name}</Text>
+                      <Text style={styles.badge}>Online</Text>
+                    </View>
+                    <View style={styles.childTwoTwo}>
+                      <Text style={styles.light}>{item.education}</Text>
+                      <Text style={styles.light}>{item.experience}</Text>
+                    </View>
+                    <View style={styles.childThree}>
+                      <TouchableOpacity style={styles.childThreeThree}>
+                        <Image source={require('../images/homeOne.png')} />
+                        <Text style={styles.childThreeThreeText}>
+                          Book Appointment
+                        </Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.childThreeThree}>
+                        <Image source={require('../images/homeOne.png')} />
+                        <Text style={styles.childThreeThreeText}>
+                          Consult Online
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                 </View>
-                <View style={styles.childTwo}>
-                  <View style={styles.childTwoOne}>
-                    <Text style={styles.heading}>{item.name}</Text>
-                    <Text style={styles.badge}>Online</Text>
-                  </View>
-                  <View style={styles.childTwoTwo}>
-                    <Text style={styles.light}>{item.education}</Text>
-                    <Text style={styles.light}>{item.experience}</Text>
-                  </View>
-                  <View style={styles.childThree}>
-                    <TouchableOpacity style={styles.childThreeThree}>
-                      <Image source={require('../images/homeOne.png')} />
-                      <Text style={styles.childThreeThreeText}>
-                        Book Appointment
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.childThreeThree}>
-                      <Image source={require('../images/homeOne.png')} />
-                      <Text style={styles.childThreeThreeText}>
-                        Consult Online
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
