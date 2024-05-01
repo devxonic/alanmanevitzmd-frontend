@@ -21,7 +21,6 @@ const Dashboard = () => {
   return (
     <SafeAreaView>
       <View style={styles.main}>
-        <Header />
         <View style={styles.carousel}>
           <CarouselDashboard />
         </View>

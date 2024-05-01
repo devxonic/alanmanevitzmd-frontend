@@ -2,69 +2,41 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   ScrollView,
   TouchableOpacity,
-  SafeAreaView,
+  Image,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import Header from '../components/layout/Header';
-import {DoctorDetails} from '../../Data';
-import Footer from '../components/layout/Footer';
-import {getDoctors} from '../api/auth';
-import {useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {LabDetails} from '../../../Data';
 
-const DoctorsList = () => {
-  const [doctors, setDoctors] = useState([]);
-  const navigation = useNavigation();
-  const navigateToSlot = () => {
-    navigation.navigate('selectslot');
-  };
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await getDoctors();
-        setDoctors(response.data.data);
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    };
-    fetchCategories();
-  }, []);
-
+const LabsNearBy = () => {
   return (
     <View style={styles.main}>
       <View>
+        <Text style={styles.mainHeading}>Confirm Booking</Text>
+      </View>
+      <View>
         <ScrollView style={styles.scroll}>
-          {doctors.map((item, index) => (
-            <TouchableOpacity onPress={navigateToSlot} key={index}>
+          {LabDetails.map((item, index) => (
+            <TouchableOpacity key={index}>
               <View style={styles.container}>
                 <View style={styles.childOne}>
-                  <Image source={require('../images/doctorsFour.png')} />
+                  <Image source={item.image} />
                 </View>
                 <View style={styles.childTwo}>
                   <View style={styles.childTwoOne}>
                     <Text style={styles.heading}>{item.name}</Text>
-                    <Text style={styles.badge}>Online</Text>
+                    <Text style={styles.badge}>AVAILABLE</Text>
                   </View>
                   <View style={styles.childTwoTwo}>
-                    <Text style={styles.light}>{item.education}</Text>
-                    <Text style={styles.light}>{item.experience}</Text>
+                    <Text style={styles.light}>{item.test}</Text>
+                    <Text style={[styles.light, styles.lightTwo]}>
+                      {item.time}
+                    </Text>
                   </View>
-                  <View style={styles.childThree}>
-                    <TouchableOpacity style={styles.childThreeThree}>
-                      <Image source={require('../images/homeOne.png')} />
-                      <Text style={styles.childThreeThreeText}>
-                        Book Appointment
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.childThreeThree}>
-                      <Image source={require('../images/homeOne.png')} />
-                      <Text style={styles.childThreeThreeText}>
-                        Consult Online
-                      </Text>
-                    </TouchableOpacity>
+                  <View>
+                    <Text style={styles.loc}>Location:</Text>
+                    <Text style={styles.locdes}>{item.location}</Text>
                   </View>
                 </View>
               </View>
@@ -72,12 +44,29 @@ const DoctorsList = () => {
           ))}
         </ScrollView>
       </View>
-      <Footer />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  main: {
+    margin: 10,
+  },
+
+  loc: {
+    color: 'silver',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+
+  locdes: {
+    fontSize: 12,
+  },
+  mainHeading: {
+    fontSize: 25,
+    color: '#160846',
+    marginVertical: 10,
+  },
   container: {
     display: 'flex',
     flexDirection: 'row',
@@ -99,10 +88,7 @@ const styles = StyleSheet.create({
     color: '#116754',
     fontWeight: '600',
   },
-  main: {
-    backgroundColor: '#E5EEEC',
-    flex: 1,
-  },
+
   childOne: {
     width: '25%',
   },
@@ -127,8 +113,11 @@ const styles = StyleSheet.create({
     color: '#116754',
     padding: 5,
     borderRadius: 2,
-    margin: 5,
     fontSize: 10,
+    marginVertical: 5,
+  },
+  lightTwo: {
+    marginLeft: 5,
   },
   childTwoTwo: {
     display: 'flex',
@@ -154,5 +143,4 @@ const styles = StyleSheet.create({
     marginLeft: 3,
   },
 });
-
-export default DoctorsList;
+export default LabsNearBy;

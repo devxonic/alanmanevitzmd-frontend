@@ -14,6 +14,10 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Footer from './src/components/layout/Footer.js';
 import ConfirmBooking from './src/components/modules/ConfirmBooking.js';
 import SelectSlot from './src/screens/SelectSlot.js';
+import Diagnostics from './src/screens/Diagnostics.js';
+import NotificationScreen from './src/screens/NotificationScreen.js';
+import BlogScreen from './src/screens/BlogScreen.js';
+import Header from './src/components/layout/Header.js';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -24,6 +28,21 @@ const App = () => {
           screenOptions={{
             header: () => <Header />,
           }}>
+          {/* <Stack.Screen
+            name="diagnostics"
+            component={Diagnostics}
+            options={{headerShown: false}}
+          /> */}
+          {/* <Stack.Screen
+            name="notification"
+            component={NotificationScreen}
+            options={{headerShown: false}}
+          /> */}
+          {/* <Stack.Screen
+            name="blog"
+            component={BlogScreen}
+            options={{headerShown: false}}
+          /> */}
           <Stack.Screen
             name="onboard"
             component={Onboard}
@@ -52,27 +71,27 @@ const App = () => {
           <Stack.Screen
             name="dashboard"
             component={Dashboard}
-            options={{headerShown: false}}
+            options={{headerShown: true}}
           />
           <Stack.Screen
             name="doctorscategory"
             component={DoctorsCategory}
-            options={{headerShown: false}}
+            options={{headerShown: true}}
           />
           <Stack.Screen
             name="doctorslist"
             component={DoctorsList}
-            options={{headerShown: false}}
+            options={{headerShown: true}}
           />
           <Stack.Screen
             name="selectslot"
             component={SelectSlot}
-            options={{headerShown: false}}
+            options={{headerShown: true}}
           />
           <Stack.Screen
             name="booking"
             component={ConfirmBooking}
-            options={{headerShown: false}}
+            options={{headerShown: true}}
           />
         </Stack.Navigator>
       </NavigationContainer>
