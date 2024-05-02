@@ -8,42 +8,46 @@ import {
 } from 'react-native';
 import React from 'react';
 import {LabDetails} from '../../../Data';
+import Footer from '../layout/Footer';
 
 const LabsNearBy = () => {
   return (
-    <View style={styles.main}>
-      <View>
-        <Text style={styles.mainHeading}>Confirm Booking</Text>
-      </View>
-      <View>
-        <ScrollView style={styles.scroll}>
-          {LabDetails.map((item, index) => (
-            <TouchableOpacity key={index}>
-              <View style={styles.container}>
-                <View style={styles.childOne}>
-                  <Image source={item.image} />
+    <View>
+      <View style={styles.main}>
+        <View>
+          <Text style={styles.mainHeading}>Confirm Booking</Text>
+        </View>
+        <View>
+          <ScrollView style={styles.scroll}>
+            {LabDetails.map((item, index) => (
+              <TouchableOpacity key={index}>
+                <View style={styles.container}>
+                  <View style={styles.childOne}>
+                    <Image source={item.image} />
+                  </View>
+                  <View style={styles.childTwo}>
+                    <View style={styles.childTwoOne}>
+                      <Text style={styles.heading}>{item.name}</Text>
+                      <Text style={styles.badge}>AVAILABLE</Text>
+                    </View>
+                    <View style={styles.childTwoTwo}>
+                      <Text style={styles.light}>{item.test}</Text>
+                      <Text style={[styles.light, styles.lightTwo]}>
+                        {item.time}
+                      </Text>
+                    </View>
+                    <View>
+                      <Text style={styles.loc}>Location:</Text>
+                      <Text style={styles.locdes}>{item.location}</Text>
+                    </View>
+                  </View>
                 </View>
-                <View style={styles.childTwo}>
-                  <View style={styles.childTwoOne}>
-                    <Text style={styles.heading}>{item.name}</Text>
-                    <Text style={styles.badge}>AVAILABLE</Text>
-                  </View>
-                  <View style={styles.childTwoTwo}>
-                    <Text style={styles.light}>{item.test}</Text>
-                    <Text style={[styles.light, styles.lightTwo]}>
-                      {item.time}
-                    </Text>
-                  </View>
-                  <View>
-                    <Text style={styles.loc}>Location:</Text>
-                    <Text style={styles.locdes}>{item.location}</Text>
-                  </View>
-                </View>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
       </View>
+      <Footer />
     </View>
   );
 };
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   scroll: {
-    height: 575,
+    height: 520,
   },
   text: {
     fontSize: 18,
