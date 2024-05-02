@@ -48,6 +48,15 @@ const Footer = () => {
         />
         <Text style={{fontSize: 10, color: 'black'}}>Category</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigateToScreen('profile')}
+        style={{display: 'flex', alignItems: 'center'}}>
+        <Image
+          source={require('../../images/user.png')}
+          style={{tintColor: 'black', height: 20, width: 20}}
+        />
+        <Text style={{fontSize: 10, color: 'black'}}>Category</Text>
+      </TouchableOpacity>
     </View>
   );
 };

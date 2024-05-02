@@ -18,6 +18,7 @@ import Diagnostics from './src/screens/Diagnostics.js';
 import NotificationScreen from './src/screens/NotificationScreen.js';
 import BlogScreen from './src/screens/BlogScreen.js';
 import Header from './src/components/layout/Header.js';
+import Profile from './src/screens/Profile.js';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -28,11 +29,6 @@ const App = () => {
           screenOptions={{
             header: () => <Header />,
           }}>
-          {/* <Stack.Screen
-            name="diagnostics"
-            component={Diagnostics}
-            options={{headerShown: false}}
-          /> */}
           {/* <Stack.Screen
             name="notification"
             component={NotificationScreen}
@@ -91,6 +87,16 @@ const App = () => {
           <Stack.Screen
             name="booking"
             component={ConfirmBooking}
+            options={{headerShown: true}}
+          />
+          <Stack.Screen
+            name="diagnostics"
+            component={Diagnostics}
+            options={{headerShown: true}}
+          />
+          <Stack.Screen
+            name="profile"
+            component={Profile}
             options={{headerShown: true}}
           />
         </Stack.Navigator>

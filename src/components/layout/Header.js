@@ -1,7 +1,6 @@
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import SearchBar from '../common/SearchBar';
-import Button from '../common/Button';
 import {useNavigation} from '@react-navigation/native';
 
 const Header = () => {
@@ -34,8 +33,6 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   logoBox: {
-    // borderWidth: 1,
-    // borderColor: 'red',
     width: 120,
   },
   logo: {

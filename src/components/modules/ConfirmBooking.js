@@ -9,8 +9,10 @@ import {
 import React, {useState} from 'react';
 import Input from '../common/Input';
 import Button from '../common/Button';
+import {useNavigation} from '@react-navigation/native';
 
 const ConfirmBooking = () => {
+  const navigation = useNavigation();
   const [selectedGender, setSelectedGender] = useState('male');
   const [selectedBtn, setSelectedBtn] = useState('cash');
   const [modalVisible, setModalVisible] = useState(false);
@@ -29,6 +31,7 @@ const ConfirmBooking = () => {
 
   const closeModal = () => {
     setModalVisible(false);
+    navigation.navigate('onboard');
   };
 
   return (

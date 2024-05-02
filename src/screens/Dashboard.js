@@ -17,13 +17,15 @@ const Dashboard = () => {
   const handleDoctorCategory = () => {
     navigation.navigate('doctorscategory');
   };
-
+  const handleDiagnostic = () => {
+    navigation.navigate('diagnostics');
+  };
   return (
     <SafeAreaView>
       <View style={styles.main}>
-        {/* <View style={styles.carousel}> */}
-        <CarouselDashboard />
-        {/* </View> */}
+        <View style={styles.carousel}>
+          <CarouselDashboard />
+        </View>
         <TouchableOpacity onPress={handleDoctorCategory}>
           <View style={styles.thirdchild}>
             <View style={styles.thirdchildOne}>
@@ -39,18 +41,22 @@ const Dashboard = () => {
           </View>
         </TouchableOpacity>
         <View style={styles.fourthChild}>
-          <View style={styles.fourthChildOne}>
+          <TouchableOpacity
+            onPress={handleDiagnostic}
+            style={styles.fourthChildOne}>
             <View>
-              <Text style={styles.heading}>Diagnostics</Text>
-              <Text style={styles.text}>
-                Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
-              </Text>
+              <View>
+                <Text style={styles.heading}>Diagnostics</Text>
+                <Text style={styles.text}>
+                  Lorem Ipsum Dolor Sit Amet, Lorem Ipsum Dolor Sit Amet
+                </Text>
+              </View>
+              <View style={styles.fourthChildOneTwo}>
+                <Image source={require('../images/testube.png')} />
+                <Image source={require('../images/hand.png')} />
+              </View>
             </View>
-            <View style={styles.fourthChildOneTwo}>
-              <Image source={require('../images/testube.png')} />
-              <Image source={require('../images/hand.png')} />
-            </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.fourthChildTwo}>
             <View>
               <Text style={styles.headingRight}>Hire Nurses</Text>
@@ -86,7 +92,7 @@ const Dashboard = () => {
 
 const styles = StyleSheet.create({
   carousel: {
-    // height: 140,
+    height: 140,
   },
   main: {
     backgroundColor: '#E7F0EE',

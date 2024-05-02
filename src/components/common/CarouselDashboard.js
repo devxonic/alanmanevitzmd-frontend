@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     borderRadius: 5,
-    height: 300,
+    // height: 300,
   },
   leftchild: {
     width: '80%',
